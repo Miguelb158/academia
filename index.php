@@ -20,9 +20,30 @@ $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Alunos</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/nav.css">
 </head>
 <body>
+<header class="header">
+      <nav>
+        <div class="nav__bar">
+          <div class="logo">
+            <a href="#">    <img src="./img/trans.png" alt=""></a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Aluno</a></li>
+          <li><a href="#service">Instrutor</a></li>
+          <li><a href="#explore">Aulas</a></li>
+        
+        </ul>
+       
+      </nav>
+      <script src="./js/script.js"></script>
+    </header>
     <h2>Lista de Alunos</h2>
     <table border="1">
         <tr>

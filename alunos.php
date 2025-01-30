@@ -15,6 +15,30 @@ $_result = $conn->query($sql);
 </head>
 <body>
 
+<nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img src="assets/logo-white.png" alt="logo" class="logo-white" />
+              <img src="assets/logo-dark.png" alt="logo" class="logo-dark" />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#service">Services</a></li>
+          <li><a href="#class">Classes</a></li>
+          <li><a href="#contact">Blog</a></li>
+          <li><a href="#">Join Now</a></li>
+        </ul>
+        <div class="nav__btns">
+          <button class="btn">Join Now</button>
+        </div>
+      </nav>
 <h1>Alunos Cadastrados</h1>
 
 <table border="1">
