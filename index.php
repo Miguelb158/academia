@@ -20,6 +20,10 @@ $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Alunos</title>
+      <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/nav.css">
 </head>
 <body>
@@ -34,10 +38,10 @@ $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
           </div>
         </div>
         <ul class="nav__links" id="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">Aluno</a></li>
-          <li><a href="#service">Instrutor</a></li>
-          <li><a href="#explore">Aulas</a></li>
+          <li><a href="./home.php">Home</a></li>
+          <li><a href="./index.php">Aluno</a></li>
+          <li><a href="./instrutor_academia.php">Instrutor</a></li>
+          <li><a href="./aulas_academia.php">Aulas</a></li>
         
         </ul>
        

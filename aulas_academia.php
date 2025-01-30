@@ -1,71 +1,89 @@
 <?php
-require 'conexao.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_academia";
 
-// Listar aulas
-$query = "SELECT aula_cod, aula_tipo, aula_data FROM aula";
-$result = mysqli_query($conn, $query);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['agendar'])) {
-        $tipo = $_POST['tipo'];
-        $data = $_POST['data'];
-        $sql = "INSERT INTO aula (aula_tipo, aula_data) VALUES ('$tipo', '$data')";
-        mysqli_query($conn, $sql);
-    }
-    if (isset($_POST['editar'])) {
-        $id = $_POST['id'];
-        $tipo = $_POST['tipo'];
-        $data = $_POST['data'];
-        $sql = "UPDATE aula SET aula_tipo='$tipo', aula_data='$data' WHERE aula_cod=$id";
-        mysqli_query($conn, $sql);
-    }
-    if (isset($_POST['excluir'])) {
-        $id = $_POST['id'];
-        $sql = "DELETE FROM aula WHERE aula_cod=$id";
-        mysqli_query($conn, $sql);
-    }
-    header("Location: ".$_SERVER['PHP_SELF']);
-    exit();
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
 }
+
+// Excluir aula
+if (isset($_GET['delete'])) {
+    $aula_cod = intval($_GET['delete']);
+    $conn->query("DELETE FROM aula WHERE aula_cod=$aula_cod");
+    header("Location: index.php");
+}
+
+// Atualizar aula
+if (isset($_POST['update'])) {
+    $aula_cod = intval($_POST['aula_cod']);
+    $aula_tipo = $conn->real_escape_string($_POST['aula_tipo']);
+    $aula_data = $conn->real_escape_string($_POST['aula_data']);
+    $fk_instrutor_cod = intval($_POST['fk_instrutor_cod']);
+    $fk_aluno_cod = intval($_POST['fk_aluno_cod']);
+    
+    $conn->query("UPDATE aula SET aula_tipo='$aula_tipo', aula_data='$aula_data', fk_instrutor_cod=$fk_instrutor_cod, fk_aluno_cod=$fk_aluno_cod WHERE aula_cod=$aula_cod");
+    header("Location: index.php");
+}
+
+// Inserir nova aula
+if (isset($_POST['add'])) {
+    $aula_tipo = $conn->real_escape_string($_POST['aula_tipo']);
+    $aula_data = $conn->real_escape_string($_POST['aula_data']);
+    $fk_instrutor_cod = intval($_POST['fk_instrutor_cod']);
+    $fk_aluno_cod = intval($_POST['fk_aluno_cod']);
+    
+    $conn->query("INSERT INTO aula (aula_tipo, aula_data, fk_instrutor_cod, fk_aluno_cod) VALUES ('$aula_tipo', '$aula_data', $fk_instrutor_cod, $fk_aluno_cod)");
+    header("Location: index.php");
+}
+
+$result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor_nome, al.aluno_nome FROM aula a JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod");
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Aulas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Aulas Agendadas</h2>
-    <table border='1'>
+    <table border="1">
         <tr>
-            <th>Tipo de Aula</th>
+            <th>Tipo</th>
             <th>Data</th>
+            <th>Instrutor</th>
+            <th>Aluno</th>
             <th>Ações</th>
         </tr>
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><?php echo $row['aula_tipo']; ?></td>
-                <td><?php echo $row['aula_data']; ?></td>
-                <td>
-                    <form method='post' style='display:inline;'>
-                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
-                        <input type='text' name='tipo' value='<?php echo $row['aula_tipo']; ?>' required>
-                        <input type='date' name='data' value='<?php echo $row['aula_data']; ?>' required>
-                        <button type='submit' name='editar'>Editar</button>
-                    </form>
-                    <form method='post' style='display:inline;'>
-                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
-                        <button type='submit' name='excluir'>Excluir</button>
-                    </form>
-                </td>
-            </tr>
-        <?php } ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= htmlspecialchars($row['aula_tipo']) ?></td>
+            <td><?= htmlspecialchars($row['aula_data']) ?></td>
+            <td><?= htmlspecialchars($row['instrutor_nome']) ?></td>
+            <td><?= htmlspecialchars($row['aluno_nome']) ?></td>
+            <td>
+                <a href="edit.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> |
+                <a href="index.php?delete=<?= $row['aula_cod'] ?>" onclick="return confirm('Tem certeza?');">Excluir</a>
+            </td>
+        </tr>
+        <?php endwhile; ?>
     </table>
 
     <h2>Agendar Nova Aula</h2>
-    <form method='post'>
-        <input type='text' name='tipo' placeholder='Tipo de Aula' required>
-        <input type='date' name='data' required>
-        <button type='submit' name='agendar'>Agendar</button>
+    <form method="post">
+        <label>Tipo de Aula: <input type="text" name="aula_tipo" required></label><br>
+        <label>Data: <input type="date" name="aula_data" required></label><br>
+        <label>ID Instrutor: <input type="number" name="fk_instrutor_cod" required></label><br>
+        <label>ID Aluno: <input type="number" name="fk_aluno_cod" required></label><br>
+        <button type="submit" name="add">Agendar</button>
     </form>
 </body>
 </html>
+
+<?php $conn->close(); ?>
