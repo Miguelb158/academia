@@ -34,7 +34,7 @@ $_result = $conn->query($sql);
             echo "<td>" . $row['aluno_cpf'] . "</td>";
             echo "<td>" . $row['aluno_telefone'] . "</td>";
             echo "<td>
-                    <a href='editar_aluno.php?id=" . $row['aluno_cod'] . "'>Editar</a>
+                    <a href='editar.php?id=" . $row['aluno_cod'] . "'>Editar</a>
                   </td>";
             echo "</tr>";
         }
