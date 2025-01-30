@@ -2,8 +2,8 @@
 
 session_start();
 
-$nome = $_SESSION['nome'];
-$tel = $_SESSION['tel'];
+$nome = $_SESSION['username'];
+$tel = $_SESSION['pass'];
 $email = $_SESSION['email'];
 
 include 'conexao.php';
@@ -21,7 +21,13 @@ include 'conexao.php';
 
     <h1>bem vindo aluno    ,</h1>
 
-    
+
+    <h2>Alunos cadastrados</h2>
+    <table>
+        <tr></tr>
+    </table>
+
+
 
 </body>
 </html>
