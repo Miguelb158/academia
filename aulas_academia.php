@@ -68,7 +68,7 @@ $result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor
             <td><?= htmlspecialchars($row['instrutor_nome']) ?></td>
             <td><?= htmlspecialchars($row['aluno_nome']) ?></td>
             <td>
-                <a href="edit.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> |
+                <a href="editar_aluno.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> |
                 <a href="index.php?delete=<?= $row['aula_cod'] ?>" onclick="return confirm('Tem certeza?');">Excluir</a>
             </td>
         </tr>
