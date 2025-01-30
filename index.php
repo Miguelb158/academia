@@ -1,100 +1,66 @@
+<?php
+
+$pdo = new PDO("mysql:host=localhost;dbname=db_academia", "root", "", [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+]);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_cod'])) {
+    $stmt = $pdo->prepare("UPDATE aluno SET aluno_nome = ?, aluno_endereco = ?, aluno_telefone = ? WHERE aluno_cod = ?");
+    $stmt->execute([$_POST['aluno_nome'], $_POST['aluno_endereco'], $_POST['aluno_telefone'], $_POST['aluno_cod']]);
+}
+
+$alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gerenciamento de Alunos</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="cadastroForm">
-        <label for="tipo_usuario">Você é:</label>
-        <select id="tipo_usuario" name="tipo_usuario" required>
-            <option value="">Selecione...</option>
-            <option value="aluno">Aluno</option>
-            <option value="instrutor">Instrutor</option>
-        </select>
-    
-        <div id="dadosComuns">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-    
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" required>
-        </div>
-    
-        <div id="dadosAluno" style="display:none;">
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" name="cpf">
-    
-            <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco">
-        </div>
-    
-        <div id="dadosInstrutor" style="display:none;">
-            <label for="especialidade">Especialidade:</label>
-            <input type="text" id="especialidade" name="especialidade">
-        </div>
-    
-        <button type="submit">Cadastrar</button>
+    <h2>Lista de Alunos</h2>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+        <?php foreach ($alunos as $aluno): ?>
+            <tr>
+                <td><?= htmlspecialchars($aluno['aluno_nome']) ?></td>
+                <td><?= htmlspecialchars($aluno['aluno_cpf']) ?></td>
+                <td><?= htmlspecialchars($aluno['aluno_endereco']) ?></td>
+                <td><?= htmlspecialchars($aluno['aluno_telefone']) ?></td>
+                <td>
+                    <a href="aluno.php?edit=<?= $aluno['aluno_cod'] ?>">Editar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <?php if (isset($_GET['edit'])): 
+        $stmt = $pdo->prepare("SELECT * FROM aluno WHERE aluno_cod = ?");
+        $stmt->execute([$_GET['edit']]);
+        $aluno = $stmt->fetch();
+    ?>
+    <h2>Editar Aluno</h2>
+    <form method="POST" action="aluno.php">
+        <input type="hidden" name="aluno_cod" value="<?= $aluno['aluno_cod'] ?>">
+        <label>Nome:</label>
+        <input type="text" name="aluno_nome" value="<?= htmlspecialchars($aluno['aluno_nome']) ?>" required>
+        <label>Endereço:</label>
+        <input type="text" name="aluno_endereco" value="<?= htmlspecialchars($aluno['aluno_endereco']) ?>" required>
+        <label>Telefone:</label>
+        <input type="text" name="aluno_telefone" value="<?= htmlspecialchars($aluno['aluno_telefone']) ?>" required>
+        <button type="submit">Atualizar</button>
     </form>
-
-    <script>
-    document.getElementById("tipo_usuario").addEventListener("change", function() {
-    let tipo = this.value;
-    document.getElementById("dadosAluno").style.display = (tipo === "aluno") ? "block" : "none";
-    document.getElementById("dadosInstrutor").style.display = (tipo === "instrutor") ? "block" : "none";
-});
-</script>
-
+    <?php endif; ?>
 </body>
 </html>
-
-<?php
-include 'conexao.php'; 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tipo_usuario = $_POST['tipo_usuario'];
-    $nome = trim($_POST['nome']);
-    $telefone = trim($_POST['telefone']);
-
-    if (empty($tipo_usuario) || empty($nome) || empty($telefone)) {
-        echo "Por favor, preencha todos os campos obrigatórios.";
-        exit;
-    }
-
-    if ($tipo_usuario == "aluno") {
-        $cpf = trim($_POST['cpf']);
-        $endereco = trim($_POST['endereco']);
-
-        if (empty($cpf) || empty($endereco)) {
-            echo "Por favor, preencha todos os campos de aluno.";
-            exit;
-        }
-
-        $sql = "INSERT INTO aluno (aluno_nome, aluno_cpf, aluno_endereco, aluno_telefone) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $nome, $cpf, $endereco, $telefone);
-
-    } elseif ($tipo_usuario == "instrutor") {
-        $especialidade = trim($_POST['especialidade']);
-
-        if (empty($especialidade)) {
-            echo "Por favor, preencha o campo de especialidade.";
-            exit;
-        }
-
-        $sql = "INSERT INTO instrutor (instrutor_nome, instrutor_especialidade) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $nome, $especialidade);
-    }
-
-    if ($stmt->execute()) {
-        echo "Cadastro realizado com sucesso!";
-    } else {
-        echo "Erro ao cadastrar: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-?>
