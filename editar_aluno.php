@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $telefone= $_POST ['telefone'];
 
     if ($row > 0) {
-        $sql = "UPDATE aluno SET instrutor_nome='$nome', aluno_cpf = $cpf , aluno_endereco = '$endereco', aluno_telefone = $telefone WHERE instrutor_cod = $row";
+        $sql = "UPDATE aluno SET aluno_nome='$nome', aluno_cpf = $cpf , aluno_endereco = '$endereco', aluno_telefone = $telefone WHERE aluno_cod = $row";
 
         if (mysqli_query($conn, $sql)) {
             echo "Atualização realizada com sucesso!";
