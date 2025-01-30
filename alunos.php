@@ -2,7 +2,7 @@
 include 'conexao.php';  
 $conn = new mysqli("localhost", "root", "", "db_academia");
 $sql = "SELECT * FROM aluno";
-$result = $conn->query($sql);
+$_result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +27,8 @@ $result = $conn->query($sql);
 
     <?php
    
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($_result->num_rows > 0) {
+        while ($row = $_result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['aluno_nome'] . "</td>";
             echo "<td>" . $row['aluno_cpf'] . "</td>";
