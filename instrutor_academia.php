@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_cod'])) {
 }
 
 
+<?php
 include 'conexao.php';  
 $conn = new mysqli("localhost", "root", "", "db_academia");
 $sqla = "SELECT * FROM aluno";
