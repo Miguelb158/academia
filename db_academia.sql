@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Jan-2025 às 13:38
+-- Tempo de geração: 30-Jan-2025 às 14:01
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_academia`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aluno`
+--
+
+CREATE TABLE `aluno` (
+  `aluno_cod` int(50) NOT NULL,
+  `aluno_nome` varchar(100) NOT NULL,
+  `aluno_cpf` int(50) NOT NULL,
+  `aluno_endereco` varchar(150) NOT NULL,
+  `aluno_telefone` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `aluno`
+--
+
+INSERT INTO `aluno` (`aluno_cod`, `aluno_nome`, `aluno_cpf`, `aluno_endereco`, `aluno_telefone`) VALUES
+(1, 'Lucas', 696969696, 'vila  menino jesus', '12145590'),
+(2, 'beatriz leite pedroso', 45134615, 'rua dos abacates', '12345564');
 
 -- --------------------------------------------------------
 
@@ -45,9 +67,37 @@ INSERT INTO `aula` (`aula_cod`, `aula_tipo`, `aula_data`, `fk_instrutor_cod`, `f
 (3, 'Crossfit', '2025-01-31', 3, 1),
 (4, 'aeróbico', '2025-01-27', 4, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `instrutor`
+--
+
+CREATE TABLE `instrutor` (
+  `instrutor_cod` int(11) NOT NULL,
+  `instrutor_nome` varchar(100) NOT NULL,
+  `instrutor_especialidade` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `instrutor`
+--
+
+INSERT INTO `instrutor` (`instrutor_cod`, `instrutor_nome`, `instrutor_especialidade`) VALUES
+(1, 'Antônio Fagundes', 'yoga'),
+(2, 'Nicolas', 'musculação'),
+(3, 'Ana Cristina', 'Crossfit'),
+(4, 'Guilherme', 'aeróbico');
+
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `aluno`
+--
+ALTER TABLE `aluno`
+  ADD PRIMARY KEY (`aluno_cod`);
 
 --
 -- Índices para tabela `aula`
@@ -58,14 +108,32 @@ ALTER TABLE `aula`
   ADD KEY `fk_aluno_cod` (`fk_aluno_cod`);
 
 --
+-- Índices para tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  ADD PRIMARY KEY (`instrutor_cod`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `aluno`
+--
+ALTER TABLE `aluno`
+  MODIFY `aluno_cod` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
   MODIFY `aula_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  MODIFY `instrutor_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para despejos de tabelas
