@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/nav.css">
     <title>Document</title>
 </head>
 <body>
+
 <?php
 
 $pdo = new PDO("mysql:host=localhost;dbname=db_academia", "root", "", [
@@ -37,6 +43,24 @@ $_instrutor = $conn->query($sql);
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
+<nav>
+        <div class="nav__bar">
+          <div class="logo">
+            <a href="#">    <img src="./img/trans.png" alt=""></a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="./home.php">Home</a></li>
+          <li><a href="./index.php">Aluno</a></li>
+          <li><a href="./instrutor_academia.php">Instrutor</a></li>
+          <li><a href="./aulas_academia.php">Aulas</a></li>
+        
+        </ul>
+       
+      </nav>
 
 <h1>Alunos Cadastrados</h1>
 
@@ -98,6 +122,7 @@ $_instrutor = $conn->query($sql);
     ?>
 </table>
 
+<script src="./js/script.js"></script>
 
 </body>
 </html>
