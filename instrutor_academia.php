@@ -57,8 +57,8 @@ $_instrutor = $conn->query($sql);
 
     <?php
    
-    if ($_result->num_rows > 0) {
-        while ($row = $_result->fetch_assoc()) {
+    if ($_instrutor ->num_rows > 0) {
+        while ($row = $_instrutor ->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['aluno_nome'] . "</td>";
             echo "<td>" . $row['aluno_cpf'] . "</td>";
