@@ -41,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th>Data</th>
             <th>Ações</th>
         </tr>
-<<<<<<< HEAD
         <?php while ($row = $result->fetch_assoc()): ?>
         <tr>
             <td><?= htmlspecialchars($row['aula_tipo']) ?></td>
@@ -54,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </td>
         </tr>
         <?php endwhile; ?>
-=======
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
             <tr>
                 <td><?php echo $row['aula_tipo']; ?></td>
@@ -73,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
             </tr>
         <?php } ?>
->>>>>>> 48da21feb2834fcaec1e2de9eedbf47433be0fd6
     </table>
 
     <h2>Agendar Nova Aula</h2>
