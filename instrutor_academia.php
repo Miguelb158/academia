@@ -60,8 +60,8 @@ $_instrutor = $conn->query($sql);
     if ($_instrutor ->num_rows > 0) {
         while ($row = $_instrutor ->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row['aluno_nome'] . "</td>";
-            echo "<td>" . $row['aluno_cpf'] . "</td>";
+            echo "<td>" . $row['instrutor_cod'] . "</td>";
+            echo "<td>" . $row['instrutor_nome'] . "</td>";
             echo "<td>" . $row['aluno_telefone'] . "</td>";
             echo "<td>
                     <a href='editar_aluno.php?id=" . $row['aluno_cod'] . "'>Editar</a>
