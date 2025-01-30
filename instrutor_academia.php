@@ -44,6 +44,7 @@ $_instrutor = $conn->query($sql);
     <tr>
         <th>Nome</th>
         <th>CPF</th>
+        <th>endereço</th>
         <th>Telefone</th>
         <th>Ações</th>
     </tr>
@@ -55,6 +56,7 @@ $_instrutor = $conn->query($sql);
             echo "<tr>";
             echo "<td>" . $row['aluno_nome'] . "</td>";
             echo "<td>" . $row['aluno_cpf'] . "</td>";
+            echo "<td>" . $row['aluno_endereco'] . "</td>";
             echo "<td>" . $row['aluno_telefone'] . "</td>";
             echo "<td>
                     <a href='editar_aluno.php?id=" . $row['aluno_cod'] . "'>Editar</a>

@@ -68,11 +68,35 @@ $result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor
             <td><?= htmlspecialchars($row['instrutor_nome']) ?></td>
             <td><?= htmlspecialchars($row['aluno_nome']) ?></td>
             <td>
-                <a href="edit.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> |
+
+            <a href="edit.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> 
+
+                <a href="editar_aluno.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> 
+
                 <a href="index.php?delete=<?= $row['aula_cod'] ?>" onclick="return confirm('Tem certeza?');">Excluir</a>
             </td>
         </tr>
         <?php endwhile; ?>
+
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <tr>
+                <td><?php echo $row['aula_tipo']; ?></td>
+                <td><?php echo $row['aula_data']; ?></td>
+                <td>
+                    <form method='post' style='display:inline;'>
+                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
+                        <input type='text' name='tipo' value='<?php echo $row['aula_tipo']; ?>' required>
+                        <input type='date' name='data' value='<?php echo $row['aula_data']; ?>' required>
+                        <button type='submit' name='editar'>Editar</button>
+                    </form>
+                    <form method='post' style='display:inline;'>
+                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
+                        <button type='submit' name='excluir'>Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        <?php } ?>
+
     </table>
 
     <h2>Agendar Nova Aula</h2>
