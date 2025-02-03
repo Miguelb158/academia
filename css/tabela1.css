@@ -75,3 +75,41 @@ tr:hover {
     }
 }
 
+
+
+.edit-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .edit-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .edit-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-container form label {
+    margin: 10px 0 5px;
+  }
+  .edit-container form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .edit-container form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .edit-container form button:hover {
+    background-color: #45a049;
+  }
