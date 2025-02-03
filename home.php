@@ -4,85 +4,146 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Web Design Mastery | Rayal Park</title>
+    <title>Web Design Mastery | Pastry World</title>
   </head>
   <body>
-    <header class="header">
+    <header>
       <nav>
-        <div class="nav__bar">
-          <div class="logo">
-            <a href="#">   <img src="./img/logoo.jpg" alt=""></a>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img src="assets/logo.png" alt="logo" />
+            </a>
           </div>
           <div class="nav__menu__btn" id="menu-btn">
-            <i class="ri-menu-line"></i>
+            <i class="ri-menu-3-line"></i>
           </div>
         </div>
         <ul class="nav__links" id="nav-links">
-        <li><a href="./home.php">Home</a></li>
-          <li><a href="./index.php">Aluno</a></li>
-          <li><a href="./instrutor_academia.php">Instrutor</a></li>
-          <li><a href="./aulas_academia.php">Aulas</a></li>
-        
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Aluno</a></li>
+          <li><a href="#about">Instrutor</a></li>
+          <li><a href="">Aulas</a></li>
         </ul>
-       
       </nav>
+
       <div class="section__container header__container" id="home">
-        <p>Bem-vindo</p>
-        <h1>Venha treinar na maior<br />rede de <span>Academia</span>.</h1>
+        <h1>Fitness Center</h1>
+        <p>
+         Venha fazer história, transpire resultados.
+        </p>
+        <div class="header__btns">
+         
+        </div>
       </div>
     </header>
 
-    <section class="section__container booking__container">
-      <form action="/" class="booking__form">
-        <div class="input__group">
-          <span><i class="bi bi-person-fill"></i></span>
-          <div>
-            <label for="check-in">Aluno</label>
-            <input type="text" placeholder="Clique aqui" />
-          </div>
-        </div>
-        <div class="input__group">
-          <span><i class="bi bi-people-fill"></i></i></span>
-          <div>
-            <label for="check-out">Instrutor</label>
-            <input type="text" placeholder="Clique aqui" />
-          </div>
-        </div>
-        <div class="input__group">
-          <span><i class="bi bi-calendar4-week"></i></span>
-          <div>
-            <label for="guest">Aulas</label>
-            <input type="text" placeholder="Clique aqui" />
-          </div>
-        </div>
-        <div class="input__group input__btn">
-         
-        </div>
-      </form>
-    </section>
     <section class="section__container about__container" id="about">
       <div class="about__image">
       <img src="./img/mulheres-academia.jpg" alt="">
       </div>
       <div class="about__content">
-        <p class="section__subheader">Quem somos?</p>
-      
-        <p class="section__description">
-         
-A Academia Bradock é o lugar ideal para quem busca força, disciplina e superação. Com equipamentos modernos e treinos personalizados, oferecemos musculação, funcional e lutas para todos os níveis. Nossa equipe qualificada te ajuda a alcançar seus objetivos com foco e motivação. Venha treinar e transforme seu corpo e mente!
-        </p>
-        <div class="about__btn">
-
+        <h2 class="section__header">Sobre nós</h2>
+        <div>
+          <p>
+          A Fitness Center surgiu num mercado emergente e desafiador, buscou a inovação por necessidade. Hoje se iguala a grandes marcas, porém com preços acessíveis.
+          </p>
+          <p>
+          Sendo altamente inovadora e resiliente, a Fitness Center tem todos os ingredientes para expandir exponencialmente e trazer qualidade de vida aos seus clientes.
+          </p>
+          <div class="about__btn">
+    
+          </div>
         </div>
       </div>
     </section>
 
-    <script src="./js/script.js"></script>
+    <section class="menu" id="menu">
+      <div class="section__container menu__container">
+        <h2 class="section__header">Conheça as
+nossas modalidades
 
-    </body>
+</h2>
+        <a href="#">
+        Serviços
+          <i class="ri-arrow-right-long-line"></i>
+        </a>
+        <div class="menu__grid">
+          <div class="menu__card">
+          <img src="./img/yoga.jpg" alt="">
+            <div class="menu__card__content">
+            
+              <h3>Yoga</h3>
+            
+            </div>
+          </div>
+          <div class="menu__card">
+          <img src="./img/musculação.jpg" alt="">
+            <div class="menu__card__content">
+        
+              <h3>Musculação</h3>
+            </div>
+          </div>
+          <div class="menu__card">
+          <img src="./img/crossfit.jpg" alt="">
+            <div class="menu__card__content">
+         
+              <h3>Crossfit</h3>
+            </div>
+          </div>
+          <div class="menu__card">
+          <img src="./img/aerobico.jpg" alt="">
+            <div class="menu__card__content">
+        
+              <h3>Aeróbico</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ 
+
+
+
+    <footer>
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <a href="#" class="footer__logo">
+            <img src="assets/logo.png" alt="logo" />
+          </a>
+        </div>
+        <div class="footer__col">
+          <h4>Entre em Contato</h4>
+          <ul class="footer__links">
+            <li>
+              <a href="#">
+              (12)98878-4567
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+     
+        <div class="footer__col">
+          <h4>Social Media</h4>
+          <ul class="footer__links">
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Youtube</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Fitness Center © 2025 Academia.
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="./js/script.js"></script>
+  </body>
 </html>

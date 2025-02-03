@@ -1,5 +1,4 @@
 <?php
-
 $pdo = new PDO("mysql:host=localhost;dbname=db_academia", "root", "", [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
@@ -12,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aluno_cod'])) {
 }
 
 $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -24,31 +24,31 @@ $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
       href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/tabela1.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-<header class="header">
-      <nav>
-        <div class="nav__bar">
-          <div class="logo">
-            <a href="#">    <img src="./img/trans.png" alt=""></a>
+<nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img src="assets/logo.png" alt="logo" />
+            </a>
           </div>
           <div class="nav__menu__btn" id="menu-btn">
-            <i class="ri-menu-line"></i>
+            <i class="ri-menu-3-line"></i>
           </div>
         </div>
         <ul class="nav__links" id="nav-links">
-          <li><a href="./home.php">Home</a></li>
-          <li><a href="./index.php">Aluno</a></li>
-          <li><a href="./instrutor_academia.php">Instrutor</a></li>
-          <li><a href="./aulas_academia.php">Aulas</a></li>
-        
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Aluno</a></li>
+          <li><a href="#about">Instrutor</a></li>
+          <li><a href="">Aulas</a></li>
         </ul>
-       
       </nav>
-      <script src="./js/script.js"></script>
-    </header>
     <h2>Lista de Alunos</h2>
+    <div class="table-container">
     <table border="1">
         <tr>
             <th>Nome</th>
@@ -64,11 +64,12 @@ $alunos = $pdo->query("SELECT * FROM aluno")->fetchAll();
                 <td><?= htmlspecialchars($aluno['aluno_endereco']) ?></td>
                 <td><?= htmlspecialchars($aluno['aluno_telefone']) ?></td>
                 <td>
-                    <a href="aluno.php?edit=<?= $aluno['aluno_cod'] ?>">Editar</a>
+                    <a href="aluno.php?edit=<?= $aluno['aluno_cod'] ?>"><i class="bi bi-pencil"></i></a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+    </div>
 
     <?php if (isset($_GET['edit'])): 
         $stmt = $pdo->prepare("SELECT * FROM aluno WHERE aluno_cod = ?");
