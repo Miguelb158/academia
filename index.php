@@ -92,6 +92,7 @@ if (count($alunos) < 8) {
       </ul>
   </nav>
 
+  
   <h2>Lista de Alunos</h2>
   <div class="table-container">
       <table border="1">
