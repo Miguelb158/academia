@@ -40,7 +40,7 @@ if (isset($_POST['update'])) {
 if (isset($_POST['add'])) {
     $aula_tipo = $_POST['aula_tipo'];
     $aula_data = $_POST['aula_data'];
-    
+
     $fk_instrutor_cod = intval($_POST['fk_instrutor_cod']);
     $fk_aluno_cod = intval($_POST['fk_aluno_cod']);
 
@@ -348,5 +348,6 @@ button:hover {
         <label>ID Aluno: <input type="number" name="fk_aluno_cod" required></label><br>
         <button type="submit" name="add">Agendar</button>
     </form>
+    <script src="./js/instru.js"></script>
 </body>
 </html>
