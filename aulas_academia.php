@@ -65,6 +65,135 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+:root {
+  --primary-color: #8c52ff;
+  --primary-color-dark: #482f79;
+  --secondary-color: #2d0779;
+  --text-dark: #1c1917;
+  --text-light: #57534e;
+  --extra-light: #d6d3d1;
+  --white: #ffffff;
+  --max-width: 1200px;
+  --header-font:  "DM Sans", serif;
+}
+
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.logo {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: var(--header-font);
+   background: #6017a3;
+  height: 8vh;
+}
+
+main {
+  background: url("bg.jpg") no-repeat center center;
+  background-size: cover;
+  height: 92vh;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin-left: 32px;
+}
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu div {
+  width: 32px;
+  height: 2px;
+  background: #fff;
+  margin: 8px;
+  transition: 0.3s;
+}
+
+@media (max-width: 999px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nav-list {
+    position: absolute;
+    top: 8vh;
+    right: 0;
+    width: 50vw;
+    height: 92vh;
+    background: #6017a3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in;
+  }
+  .nav-list li {
+    margin-left: 0;
+    opacity: 0;
+  }
+  .mobile-menu {
+    display: block;
+  }
+}
+
+.nav-list.active {
+  transform: translateX(0);
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobile-menu.active .line1 {
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+  opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+  transform: rotate(45deg) translate(-5px, -7px);
+}
+    
     body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -176,6 +305,22 @@ button:hover {
 }
 </style>
 <body>
+<header>
+<nav>
+  <a class="logo" href="/">Fitness Center</a>
+  <div class="mobile-menu">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+  <ul class="nav-list">
+    <li><a href="./index.php">Home</a></li>
+    <li><a href="./aluno.php">Aluno</a></li>
+    <li><a href="./instrutor.php">Instrutor</a></li>
+    <li><a href="./aulas_academia.php">Aulas</a></li>
+  </ul>
+</nav>
+</header>
     <h2>Aulas Agendadas</h2>
     <table border="1">
         <tr>
