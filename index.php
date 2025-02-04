@@ -86,9 +86,9 @@ if (count($alunos) < 8) {
       </div>
       <ul class="nav__links" id="nav-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="#menu">Aluno</a></li>
-          <li><a href="#about">Instrutor</a></li>
-          <li><a href="">Aulas</a></li>
+          <li><a href="alunos.php">Aluno</a></li>
+          <li><a href="instrutor_academia.php">Instrutor</a></li>
+          <li><a href="aulas_academia.php">Aulas</a></li>
       </ul>
   </nav>
 

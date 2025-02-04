@@ -4,43 +4,58 @@ $username = "root";
 $password = "";
 $dbname = "db_academia";
 
+// Conectar ao banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Excluir aula
+
 if (isset($_GET['delete'])) {
     $aula_cod = intval($_GET['delete']);
-    $conn->query("DELETE FROM aula WHERE aula_cod=$aula_cod");
-    header("Location: index.php");
+    
+    $stmt = $conn->prepare("DELETE FROM aula WHERE aula_cod = ?");
+    $stmt->bind_param("i", $aula_cod);
+    $stmt->execute();
+    $stmt->close();
+    
+
 }
 
-// Atualizar aula
+
 if (isset($_POST['update'])) {
     $aula_cod = intval($_POST['aula_cod']);
-    $aula_tipo = $conn->real_escape_string($_POST['aula_tipo']);
-    $aula_data = $conn->real_escape_string($_POST['aula_data']);
+    $aula_tipo = $_POST['aula_tipo'];
+    $aula_data = $_POST['aula_data'];
     $fk_instrutor_cod = intval($_POST['fk_instrutor_cod']);
     $fk_aluno_cod = intval($_POST['fk_aluno_cod']);
-    
-    $conn->query("UPDATE aula SET aula_tipo='$aula_tipo', aula_data='$aula_data', fk_instrutor_cod=$fk_instrutor_cod, fk_aluno_cod=$fk_aluno_cod WHERE aula_cod=$aula_cod");
-    header("Location: index.php");
+
+    $stmt = $conn->prepare("UPDATE aula SET aula_tipo=?, aula_data=?, fk_instrutor_cod=?, fk_aluno_cod=? WHERE aula_cod=?");
+    $stmt->bind_param("ssiii", $aula_tipo, $aula_data, $fk_instrutor_cod, $fk_aluno_cod, $aula_cod);
+    $stmt->execute();
+    $stmt->close();
+
+   
 }
 
-// Inserir nova aula
 if (isset($_POST['add'])) {
-    $aula_tipo = $conn->real_escape_string($_POST['aula_tipo']);
-    $aula_data = $conn->real_escape_string($_POST['aula_data']);
+    $aula_tipo = $_POST['aula_tipo'];
+    $aula_data = $_POST['aula_data'];
     $fk_instrutor_cod = intval($_POST['fk_instrutor_cod']);
     $fk_aluno_cod = intval($_POST['fk_aluno_cod']);
-    
-    $conn->query("INSERT INTO aula (aula_tipo, aula_data, fk_instrutor_cod, fk_aluno_cod) VALUES ('$aula_tipo', '$aula_data', $fk_instrutor_cod, $fk_aluno_cod)");
-    header("Location: index.php");
+
+    $stmt = $conn->prepare("INSERT INTO aula (aula_tipo, aula_data, fk_instrutor_cod, fk_aluno_cod) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssii", $aula_tipo, $aula_data, $fk_instrutor_cod, $fk_aluno_cod);
+    $stmt->execute();
+    $stmt->close();
+
+
 }
 
-$result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor_nome, al.aluno_nome FROM aula a JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod");
+// 🔎 SELECIONAR todas as aulas
+$stmt = $conn->prepare("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor_nome, al.aluno_nome FROM aula a JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod");
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +65,8 @@ $result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Aulas</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tab2.css">
+    <link rel="stylesheet" href="tabela1.css">
 </head>
 <body>
     <h2>Aulas Agendadas</h2>
@@ -68,35 +85,11 @@ $result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor
             <td><?= htmlspecialchars($row['instrutor_nome']) ?></td>
             <td><?= htmlspecialchars($row['aluno_nome']) ?></td>
             <td>
-
-            <a href="edit.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> 
-
-                <a href="editar_aluno.php?aula_cod=<?= $row['aula_cod'] ?>">Editar</a> 
-
-                <a href="index.php?delete=<?= $row['aula_cod'] ?>" onclick="return confirm('Tem certeza?');">Excluir</a>
+                <a href="editar_alulas.php?id=<?= $row['aula_cod'] ?>">Editar</a> 
+                <a href="aulas_academia.php?delete=<?= $row['aula_cod'] ?>" onclick="return confirm('Tem certeza?');">Excluir</a>
             </td>
         </tr>
         <?php endwhile; ?>
-
-        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><?php echo $row['aula_tipo']; ?></td>
-                <td><?php echo $row['aula_data']; ?></td>
-                <td>
-                    <form method='post' style='display:inline;'>
-                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
-                        <input type='text' name='tipo' value='<?php echo $row['aula_tipo']; ?>' required>
-                        <input type='date' name='data' value='<?php echo $row['aula_data']; ?>' required>
-                        <button type='submit' name='editar'>Editar</button>
-                    </form>
-                    <form method='post' style='display:inline;'>
-                        <input type='hidden' name='id' value='<?php echo $row['aula_cod']; ?>'>
-                        <button type='submit' name='excluir'>Excluir</button>
-                    </form>
-                </td>
-            </tr>
-        <?php } ?>
-
     </table>
 
     <h2>Agendar Nova Aula</h2>
@@ -109,5 +102,3 @@ $result = $conn->query("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor
     </form>
 </body>
 </html>
-
-<?php $conn->close(); ?>
