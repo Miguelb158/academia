@@ -4,7 +4,6 @@ $username = "root";
 $password = "";
 $dbname = "db_academia";
 
-// Conectar ao banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
@@ -52,7 +51,6 @@ if (isset($_POST['add'])) {
 
 }
 
-// 🔎 SELECIONAR todas as aulas
 $stmt = $conn->prepare("SELECT a.aula_cod, a.aula_tipo, a.aula_data, i.instrutor_nome, al.aluno_nome FROM aula a JOIN instrutor i ON a.fk_instrutor_cod = i.instrutor_cod JOIN aluno al ON a.fk_aluno_cod = al.aluno_cod");
 $stmt->execute();
 $result = $stmt->get_result();
@@ -64,10 +62,119 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Aulas</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tab2.css">
-    <link rel="stylesheet" href="tabela1.css">
+    <link rel="stylesheet" href="aulas.css">
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Cabeçalhos */
+h2 {
+    color: #333;
+}
+
+/* Estilização da tabela */
+table {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #4d23a1;;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Links de ação */
+a {
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    background-color: #28a745;
+    border-radius: 5px;
+    margin: 2px;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #218838;
+}
+
+/* Botão de exclusão */
+a[href*="delete"] {
+    background-color: #dc3545;
+}
+
+a[href*="delete"]:hover {
+    background-color: #c82333;
+}
+
+/* Formulário */
+form {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color:#4CAF50;;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;;
+
+
+}
+#agenda{
+    color: #9100cb;
+}
+</style>
 <body>
     <h2>Aulas Agendadas</h2>
     <table border="1">
@@ -92,7 +199,7 @@ $result = $stmt->get_result();
         <?php endwhile; ?>
     </table>
 
-    <h2>Agendar Nova Aula</h2>
+    <h2 id ="agenda">Agendar Nova Aula</h2>
     <form method="post">
         <label>Tipo de Aula: <input type="text" name="aula_tipo" required></label><br>
         <label>Data: <input type="date" name="aula_data" required></label><br>
