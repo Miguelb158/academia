@@ -16,7 +16,7 @@
         <div class="nav__header">
           <div class="nav__logo">
             <a href="#">
-              <img src="assets/logo.png" alt="logo" />
+            <img src="./img/logoo.png" alt="">
             </a>
           </div>
           <div class="nav__menu__btn" id="menu-btn">
@@ -77,7 +77,7 @@ nossas modalidades
         </a>
         <div class="menu__grid">
           <div class="menu__card">
-          <img src="./img/yoga.jpg" alt="">
+          <img src="./img/y.png" alt="">
             <div class="menu__card__content">
             
               <h3>Yoga</h3>
@@ -92,14 +92,14 @@ nossas modalidades
             </div>
           </div>
           <div class="menu__card">
-          <img src="./img/crossfit.jpg" alt="">
+          <img src="./img/c.png" alt="">
             <div class="menu__card__content">
          
               <h3>Crossfit</h3>
             </div>
           </div>
           <div class="menu__card">
-          <img src="./img/aerobico.jpg" alt="">
+          <img src="./img/a.png" alt="">
             <div class="menu__card__content">
         
               <h3>Aeróbico</h3>
@@ -117,7 +117,7 @@ nossas modalidades
       <div class="section__container footer__container">
         <div class="footer__col">
           <a href="#" class="footer__logo">
-            <img src="assets/logo.png" alt="logo" />
+          <img src="./img/logoo.png" alt="">
           </a>
         </div>
         <div class="footer__col">
