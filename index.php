@@ -40,7 +40,10 @@
          
         </div>
       </div>
+
     </header>
+
+
 
     <section class="section__container about__container" id="about">
       <div class="about__image">

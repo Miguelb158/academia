@@ -170,6 +170,15 @@ if (isset($_GET['edit_instrutor'])) {
     .edit-container form button:hover {
       background-color: #45a049;
     }
+    #ditar{
+      color:  #218838;
+    }
+
+    #esclui{
+     color : #c82333;
+    }
+
+    
   </style>
 </head>
 <body>
@@ -247,8 +256,8 @@ if (isset($_GET['edit_instrutor'])) {
         <td><?= htmlspecialchars($instrutor['instrutor_nome']) ?></td>
         <td><?= htmlspecialchars($instrutor['instrutor_especialidade']) ?></td>
         <td>
-          <a href="<?= $_SERVER['PHP_SELF'] ?>?edit_instrutor=<?= $instrutor['instrutor_cod'] ?>">Editar</a>
-          <a href="<?= $_SERVER['PHP_SELF'] ?>?delete_instrutor=<?= $instrutor['instrutor_cod'] ?>" onclick="return confirm('Tem certeza que deseja excluir este instrutor?')">Excluir</a>
+          <a id="ditar" href="<?= $_SERVER['PHP_SELF'] ?>?edit_instrutor=<?= $instrutor['instrutor_cod'] ?>">Editar</a>
+          <a id="esclui" href="<?= $_SERVER['PHP_SELF'] ?>?delete_instrutor=<?= $instrutor['instrutor_cod'] ?>" onclick="return confirm('Tem certeza que deseja excluir este instrutor?')">Excluir</a>
         </td>
       </tr>
     <?php endforeach; ?>
