@@ -348,5 +348,6 @@ button:hover {
         <label>ID Aluno: <input type="number" name="fk_aluno_cod" required></label><br>
         <button type="submit" name="add">Agendar</button>
     </form>
+    <script src="./js/script.js"></script>
 </body>
 </html>
