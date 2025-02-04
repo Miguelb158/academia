@@ -4,7 +4,9 @@
   padding: 0;
 }
 
-
+h2{
+  margin: 1.5%;
+}
 
 :root {
   --primary-color: #8c52ff;
@@ -112,6 +114,10 @@ main {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+table{
+  margin:20px auto;
 }
 
 .mobile-menu.active .line1 {
