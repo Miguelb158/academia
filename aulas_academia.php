@@ -235,22 +235,17 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Links de ação */
+
 a {
     text-decoration: none;
     padding: 5px 10px;
     color: white;
-    background-color: #28a745;
     border-radius: 5px;
     margin: 2px;
     display: inline-block;
 }
 
-a:hover {
-    background-color: #218838;
-}
 
-/* Botão de exclusão */
 a[href*="delete"] {
     background-color: #dc3545;
 }
