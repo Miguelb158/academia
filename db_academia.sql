@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Jan-2025 às 14:01
+-- Tempo de geração: 04-Fev-2025 às 12:55
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -40,8 +40,16 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`aluno_cod`, `aluno_nome`, `aluno_cpf`, `aluno_endereco`, `aluno_telefone`) VALUES
-(1, 'Lucas', 696969696, 'vila  menino jesus', '12145590'),
-(2, 'beatriz leite pedroso', 45134615, 'rua dos abacates', '12345564');
+(1, 'joge', 1, 'sei la', '1111'),
+(2, 'beatriz leite pedroso', 45134615, 'rua dos abacates', '12345564'),
+(3, 'João da Silva', 2147483647, 'Rua A, 123', '1234-5678'),
+(4, 'Maria Oliveira', 2147483647, 'Rua B, 456', '2345-6789'),
+(5, 'Pedro Santos', 2147483647, 'Rua C, 789', '3456-7890'),
+(6, 'Ana Costa', 2147483647, 'Rua D, 101', '4567-8901'),
+(7, 'Carlos Lima', 2147483647, 'Rua E, 202', '5678-9012'),
+(8, 'Fernanda Rocha', 2147483647, 'Rua F, 303', '6789-0123'),
+(9, 'Rafael Souza', 2147483647, 'Rua G, 404', '7890-1234'),
+(10, 'Juliana Martins', 2147483647, '\' OR \'1\'=\'1\' -- ', '8901-2345');
 
 -- --------------------------------------------------------
 
@@ -62,10 +70,10 @@ CREATE TABLE `aula` (
 --
 
 INSERT INTO `aula` (`aula_cod`, `aula_tipo`, `aula_data`, `fk_instrutor_cod`, `fk_aluno_cod`) VALUES
-(1, 'yoga', '2025-01-16', 1, 1),
 (2, 'musculação', '2025-01-24', 2, 2),
 (3, 'Crossfit', '2025-01-31', 3, 1),
-(4, 'aeróbico', '2025-01-27', 4, 1);
+(4, 'aeróbico', '2025-01-27', 4, 1),
+(5, 'judo', '2025-02-20', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -84,10 +92,18 @@ CREATE TABLE `instrutor` (
 --
 
 INSERT INTO `instrutor` (`instrutor_cod`, `instrutor_nome`, `instrutor_especialidade`) VALUES
-(1, 'Antônio Fagundes', 'yoga'),
-(2, 'Nicolas', 'musculação'),
-(3, 'Ana Cristina', 'Crossfit'),
-(4, 'Guilherme', 'aeróbico');
+(1, 'ana', 'pilates'),
+(2, 'jorge', 'judo'),
+(3, 'julia', 'pilates'),
+(4, 'lin', 'corrida'),
+(5, 'Luís', 'Musculção'),
+(6, 'Wesley', 'Aeróbico'),
+(7, 'Joana', 'Crossfit'),
+(8, 'Kellen', 'Musculção'),
+(9, 'Lucia', 'yoga'),
+(10, 'Gabriel', 'Crossfit'),
+(11, 'Fernanda', 'Aeróbico'),
+(12, 'Jamile', 'yoga');
 
 --
 -- Índices para tabelas despejadas
@@ -121,19 +137,19 @@ ALTER TABLE `instrutor`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `aluno_cod` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `aluno_cod` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `aula_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `aula_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `instrutor`
 --
 ALTER TABLE `instrutor`
-  MODIFY `instrutor_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `instrutor_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para despejos de tabelas
