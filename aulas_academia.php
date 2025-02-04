@@ -227,7 +227,7 @@ th, td {
 }
 
 th {
-    background: #4d23a1;;
+    background: #6017a3;
     color: white;
     text-transform: uppercase;
 }
