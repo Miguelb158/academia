@@ -109,7 +109,7 @@ nav {
   justify-content: space-around;
   align-items: center;
   font-family: var(--header-font);
-   background: #6017a3;
+   background: var(--primary-color);;
   height: 8vh;
 }
 
@@ -348,6 +348,9 @@ button:hover {
         <label>ID Aluno: <input type="number" name="fk_aluno_cod" required></label><br>
         <button type="submit" name="add">Agendar</button>
     </form>
+
+
     <script src="./js/instru.js"></script>
+
 </body>
 </html>
