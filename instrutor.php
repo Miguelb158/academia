@@ -127,6 +127,7 @@ if (isset($_GET['edit_instrutor'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/instru.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
 
 <!-- <link rel="stylesheet" href="./css/styles.css"> -->
@@ -168,7 +169,7 @@ if (isset($_GET['edit_instrutor'])) {
         <td><?= htmlspecialchars($aluno['aluno_endereco']) ?></td>
         <td><?= htmlspecialchars($aluno['aluno_telefone']) ?></td>
         <td>
-          <a href="<?= $_SERVER['PHP_SELF'] ?>?edit_aluno=<?= $aluno['aluno_cod'] ?>">Editar</a>
+          <a href="<?= $_SERVER['PHP_SELF'] ?>?edit_aluno=<?= $aluno['aluno_cod'] ?>"><i class="bi bi-pencil"></i></a>
         </td>
       </tr>
     <?php endforeach; ?>
