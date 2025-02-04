@@ -109,7 +109,7 @@ nav {
   justify-content: space-around;
   align-items: center;
   font-family: var(--header-font);
-   background: #6017a3;
+   background: var(--primary-color);;
   height: 8vh;
 }
 
