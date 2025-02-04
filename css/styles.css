@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --primary-color: #8c52ff;
@@ -9,7 +9,7 @@
   --extra-light: #d6d3d1;
   --white: #ffffff;
   --max-width: 1200px;
-  --header-font: "Noto Serif", serif;
+  --header-font:  "DM Sans", serif;
 }
 
 * {
@@ -141,7 +141,7 @@ nav {
   font-size: 4rem;
   font-weight: 600;
   font-family: var(--header-font);
-  color: var(--white);
+  color: var(--primary-color);
   text-align: center;
 }
 

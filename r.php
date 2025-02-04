@@ -85,14 +85,14 @@ if (count($alunos) < 8) {
 $instrutores = $pdo->query("SELECT * FROM instrutor")->fetchAll();
 if (count($instrutores) < 8) {
   $dummyInstrutores = [
-    ['instrutor_nome' => 'Professor A', 'instrutor_especialidade' => 'Matemática'],
-    ['instrutor_nome' => 'Professor B', 'instrutor_especialidade' => 'Física'],
-    ['instrutor_nome' => 'Professor C', 'instrutor_especialidade' => 'Química'],
-    ['instrutor_nome' => 'Professor D', 'instrutor_especialidade' => 'Biologia'],
-    ['instrutor_nome' => 'Professor E', 'instrutor_especialidade' => 'História'],
-    ['instrutor_nome' => 'Professor F', 'instrutor_especialidade' => 'Geografia'],
-    ['instrutor_nome' => 'Professor G', 'instrutor_especialidade' => 'Português'],
-    ['instrutor_nome' => 'Professor H', 'instrutor_especialidade' => 'Inglês']
+    ['instrutor_nome' => 'Luís', 'instrutor_especialidade' => 'Musculção'],
+    ['instrutor_nome' => 'Wesley', 'instrutor_especialidade' => 'Aeróbico'],
+    ['instrutor_nome' => 'Joana', 'instrutor_especialidade' => 'Crossfit'],
+    ['instrutor_nome' => 'Kellen', 'instrutor_especialidade' => 'Musculção'],
+    ['instrutor_nome' => 'Lucia', 'instrutor_especialidade' => 'yoga'],
+    ['instrutor_nome' => 'Gabriel', 'instrutor_especialidade' => 'Crossfit'],
+    ['instrutor_nome' => 'Fernanda', 'instrutor_especialidade' => 'Aeróbico'],
+    ['instrutor_nome' => 'Jamile', 'instrutor_especialidade' => 'yoga']
   ];
   foreach ($dummyInstrutores as $data) {
     $stmt = $pdo->prepare("INSERT INTO instrutor (instrutor_nome, instrutor_especialidade) 
@@ -129,8 +129,8 @@ if (isset($_GET['edit_instrutor'])) {
   <title>Gerenciamento de Alunos e Instrutores</title>
   <!-- Ícones, CSS externos e SweetAlert2 -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/nav.css">
-  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- <link rel="stylesheet" href="./css/styles.css"> -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- CSS interno para os formulários de edição -->
   <style>
@@ -174,22 +174,23 @@ if (isset($_GET['edit_instrutor'])) {
 </head>
 <body>
   <!-- MENU DE NAVEGAÇÃO -->
-  <nav>
-    <div class="nav__bar">
-      <div class="logo">
-        <a href="#"><img src="./img/trans.png" alt=""></a>
-      </div>
-      <div class="nav__menu__btn" id="menu-btn">
+  <header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <ul class="nav-links">
+        <li><a href="#">Página 1</a></li>
+        <li><a href="#">Página 2</a></li>
+        <li><a href="#">Página 3</a></li>
+      </ul>
+      <button class="menu-toggle">
         <i class="ri-menu-line"></i>
-      </div>
+      </button>
     </div>
-    <ul class="nav__links" id="nav-links">
-      <li><a href="./home.php">Home</a></li>
-      <li><a href="./index.php">Aluno</a></li>
-      <li><a href="./instrutor_academia.php">Instrutor</a></li>
-      <li><a href="./aulas_academia.php">Aulas</a></li>
-    </ul>
+    <div class="nav-right">
+      <img src="./img/logo.png" alt="Logo" class="logo">
+    </div>
   </nav>
+</header>
 
   <!-- TABELA DE ALUNOS -->
   <h1>Alunos Cadastrados</h1>
@@ -288,6 +289,14 @@ if (isset($_GET['edit_instrutor'])) {
       });
     </script>
   <?php endif; ?>
+  <script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
 
   <script src="./js/script.js"></script>
 </body>

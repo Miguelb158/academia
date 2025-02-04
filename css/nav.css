@@ -1,182 +1,79 @@
-* {
-    margin: 0;
-    padding: 0;
-  }
-  
-  a {
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-  }
-  
-  a:hover {
-    opacity: 0.7;
-  }
-  
-  .logo {
-    font-size: 24px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
-    background: #480f8a;
-    height: 8vh;
-  }
-  
-  main {
-    background: url("bg.jpg") no-repeat center center;
-    background-size: cover;
-    height: 92vh;
-  }
-  
-  .nav-list {
-    list-style: none;
-    display: flex;
-  }
-  
-  .nav-list li {
-    letter-spacing: 3px;
-    margin-left: 32px;
-  }
-  
-  .mobile-menu {
+/* Estilos gerais da navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4B0082; /* Roxo escuro */
+  padding: 15px 20px;
+  color: white;
+}
+
+/* Links do menu (lado esquerdo) */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #FFD700; /* Dourado */
+}
+
+/* Logo (lado direito) */
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Menu hambúrguer (botão) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav-links {
     display: none;
-    cursor: pointer;
-  }
-  
-  .mobile-menu div {
-    width: 32px;
-    height: 2px;
-    background: #fff;
-    margin: 8px;
-    transition: 0.3s;
-  }
-  
-  @media (max-width: 999px) {
-    body {
-      overflow-x: hidden;
-    }
-    .nav-list {
-      position: absolute;
-      top: 8vh;
-      right: 0;
-      width: 50vw;
-      height: 92vh;
-      background: #23232e;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in;
-    }
-    .nav-list li {
-      margin-left: 0;
-      opacity: 0;
-    }
-    .mobile-menu {
-      display: block;
-    }
-  }
-  
-  .nav-list.active {
-    transform: translateX(0);
-  }
-  
-  @keyframes navLinkFade {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  .mobile-menu.active .line1 {
-    transform: rotate(-45deg) translate(-8px, 8px);
-  }
-  
-  .mobile-menu.active .line2 {
-    opacity: 0;
-  }
-  
-  .mobile-menu.active .line3 {
-    transform: rotate(45deg) translate(-5px, -7px);
-  }
-
-
-  h2 {
-    color: #9100cb;
-}
-
-.table-container {
-    overflow-x: auto;
-    display: flex;
-    justify-content: center;
-}
-
-table {
-    width: 90%;
-    max-width: 800px;
-    border-collapse: collapse;
-    background: #222;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #4B0082;
+    width: 100%;
     text-align: center;
+    padding: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-right: 10px;
+  }
 }
-
-th {
-    background: #8c52ff;
-    color: black;
-    font-size: 18px;
-}
-
-td {
-    border-bottom: 1px solid #333;
-}
-
-tr:nth-child(even) {
-    background: #333;
-}
-
-tr:hover {
-    background: #444;
-}
-
-.actions a {
-    text-decoration: none;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.edit {
-    background: #4d23a1;
-}
-
-.edit:hover {
-    background: #4d23a1;
-}
-
-@media (max-width: 600px) {
-    table {
-        width: 100%;
-    }
-
-    th, td {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
-
